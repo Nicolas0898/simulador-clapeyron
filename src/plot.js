@@ -11,10 +11,13 @@ class PlotData {
     point_x = 50
     point_y = 50
 
+    intensity_min = 100;
+    intensity_max= 1100;
+
     step = 30
 }
 
-function generateLayout(clapeyron,pressure_max,volume_max,pressure_min,volume_min) {
+function generateLayout(clapeyron, pressure_max, volume_max, pressure_min, volume_min) {
     var layout = {
         title: {
             text: "Formula de Clapeyron",
@@ -24,7 +27,7 @@ function generateLayout(clapeyron,pressure_max,volume_max,pressure_min,volume_mi
         },
         autosize: true,
         scene: {
-            aspectratio: {x: (pressure_max - pressure_min)/(volume_max - volume_min), y: (volume_max - volume_min)/(pressure_max - pressure_min), z: 2},
+            aspectratio: { x: (pressure_max - pressure_min) / (volume_max - volume_min), y: (volume_max - volume_min) / (pressure_max - pressure_min), z: 2 },
             camera: {
                 center: {
                     x: 0, y: 0, z: 0
@@ -45,7 +48,7 @@ function generateLayout(clapeyron,pressure_max,volume_max,pressure_min,volume_mi
                 tickfont: {
                     color: 'blue'
                 },
-                ticksuffix: clapeyron.runity=="atm" ? "atm" : "Pa",
+                ticksuffix: clapeyron.runity == "atm" ? "atm" : "Pa",
                 nticks: 5
             },
             yaxis: {
@@ -55,7 +58,7 @@ function generateLayout(clapeyron,pressure_max,volume_max,pressure_min,volume_mi
                 tickfont: {
                     color: 'green'
                 },
-                ticksuffix: clapeyron.runity=="atm" ? "L" : "m³",
+                ticksuffix: clapeyron.runity == "atm" ? "L" : "m³",
                 nticks: 5
             },
 
@@ -108,7 +111,7 @@ function printPlot(data, clapeyron) {
     let pressao = []
     let volume = []
     let temperatura = []
-    var layout = generateLayout(clapeyron,data.pressure_max,data.volume_max,data.pressure_min,data.volume_min)
+    var layout = generateLayout(clapeyron, data.pressure_max, data.volume_max, data.pressure_min, data.volume_min)
 
     console.log(data)
     for (let x = data.pressure_min; x <= (data.pressure_max + data.pressure_max / data.step);) {
@@ -132,6 +135,10 @@ function printPlot(data, clapeyron) {
         intensity: temperatura,
         colorscale: 'Hot',
         showscale: true,
+
+        cauto: false,
+        cmin: data.intensity_min,
+        cmax: data.intensity_max,
 
         opacity: 0.65,
 
@@ -157,11 +164,12 @@ function printPlot(data, clapeyron) {
 }
 
 function changePointPos(pressure, volume, clapeyron) {
-    var new_data = createTrace2()
+    var new_data = {}
     new_data.x = [[pressure]]
     new_data.y = [[volume]]
     new_data.z = [[clapeyron.getTemperature(pressure, volume)]]
     Plotly.restyle('plot', new_data, [1])
+
 }
 
 
