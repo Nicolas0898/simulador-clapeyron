@@ -31,41 +31,47 @@
               <option value="temp">Temperatura</option>
               <option value="pressure">Pressão</option>
               <option value="volume">Volume</option>
-              <option value="n">Quantidade de matéria</option>
+              <option value="n">Quant. de matéria</option>
             </select>
           </div>
         </div>
 
-        <div class="row d-none d-md-block pe-0">
-          <div class="input-group pe-0">
-            <span class="col input-group-text">Pressão <span id="pressure_unity_display"
-                class="fst-italic">(atm)</span></span>
-            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
-            <span class="col input-group-text">Volume <span id="volume_unity_display"
-                class="fst-italic">(L)</span></span>
-            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&equals;</span>
-            <span class="col input-group-text">Temperatura <span id="temperature_unity_display"
-                class="fst-italic">(K)</span></span>
-            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
-            <span class="col input-group-text">Constante R</span>
-            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
-            <span class="col input-group-text">Quant. de matéria <span id="n_unity_display" class="fst-italic">(Mol)</span></span>
+        <div class="row pe-0">
+          <div class="d-none d-lg-flex input-group pe-0 flex-nowrap w-100">
+            <span class="text-break col input-group-text">Pressão <span class="pressure_unity_display fst-italic">(atm)</span></span>
+            <span class="text-break col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
+            <span class="text-break col input-group-text">Volume <span class="volume_unity_display fst-italic">(L)</span></span>
+            <span class="text-break col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&equals;</span>
+            <span class="text-break col input-group-text">Temperatura <span class="temperature_unity_display fst-italic">(K)</span></span>
+            <span class="text-break col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
+            <span class="text-break col input-group-text">Constante R</span>
+            <span class="text-break col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
+            <span class="text-break col input-group-text">n <span id="n_unity_display" class="fst-italic">(Mol)</span></span>
+            <!--  -->
+            
+          </div>
+          <div class="d-flex d-lg-none input-group pe-0 flex-nowrap w-100">
+            <span class="text-break col input-group-text">p <span class="pressure_unity_display fst-italic">(atm)</span></span>
+            <span class="text-break col input-group-text">v <span class="volume_unity_display fst-italic">(L)</span></span>
+            <span class="text-break col input-group-text">t <span class="temperature_unity_display fst-italic">(K)</span></span>
+            <span class="text-break col input-group-text">R</span>
+            <span class="text-break col input-group-text">n <span id="n_unity_display" class="fst-italic">(Mol)</span></span>
           </div>
         </div>
 
-        <div class="row pe-0">
+        <div class="row pe-0 row-cols-2">
           <div class="input-group flex-wrap pe-0">
             <input class="col-md form-control" type="number" step=".1" min="0" id="pressure_input" value="5">
-            <span class="col-auto input-group-text">&times;</span>
+            <span class="d-none d-lg-block col-auto input-group-text">&times;</span>
             <input class="col-md form-control" type="number" step=".1" min="0" id="volume_input" value="5">
             
-            <span class="col-auto input-group-text">=</span>
+            <span class="d-none d-lg-block col-auto input-group-text">=</span>
             <input class="col-md form-control" type="number" step=".1" min="0" id="temperature_input" value="304.878">
             
-            <span class="col-auto input-group-text">&times;</span>
+            <span class="d-none d-lg-block col-auto input-group-text">&times;</span>
             <input class="col-md form-control text-secondary" type="number" id="R_input" readonly value="0.082">
             
-            <span class="col-auto input-group-text">&times;</span>
+            <span class="d-none d-lg-block col-auto input-group-text">&times;</span>
             <input class="col-md form-control" type="number" id="n_input" step=".1" value="1">
           
           </div>
@@ -132,7 +138,7 @@
 
     <p>
       Também é possivel mudar as unidades de Litros (L) / Atmosferas (Atm) para Metros Cúbicos (m³) / Pascal (Pa), mudando o valor de R correspondente automáticamente
-      <img class="img-fluid w-25" src="/screenshot1.png">
+      <img class="img-fluid w-25" src="/screenshots/screenshot1.png">
     </p>
     <hr class="border">
     <span class="fst-italic fw-light">Desenvolvido por Nícolas Coutinho da Silva</span><br>

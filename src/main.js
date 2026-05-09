@@ -58,14 +58,16 @@ function updateUnity(){
     clapeyron.setR("atm")
     R_input.value = Clapeyron.ATM
     r_display.value = Clapeyron.ATM
-    volume_unity_display.innerText = "(L)"
-    pressure_unity_display.innerText = "(Atm)"
+
+    document.querySelectorAll(".volume_unity_display").forEach(volume_unity_display=>volume_unity_display.innerText = "(L)")
+    document.querySelectorAll(".pressure_unity_display").forEach(pressure_unity_display=>pressure_unity_display.innerText = "(atm)")
   }else{
     clapeyron.setR("pa")
     R_input.value = Clapeyron.PA
     r_display.value = Clapeyron.PA
-    volume_unity_display.innerText = "(m³)"
-    pressure_unity_display.innerText = "(Pa)"
+    
+    document.querySelectorAll(".volume_unity_display").forEach(volume_unity_display=>volume_unity_display.innerText = "(m³)")
+    document.querySelectorAll(".pressure_unity_display").forEach(pressure_unity_display=>pressure_unity_display.innerText = "(Pa)")
   }
   build_plot()
 }
