@@ -22,6 +22,7 @@ const temperature_input = document.getElementById("temperature_input")
 const R_input = document.getElementById("R_input")
 const n_input = document.getElementById("n_input")
 const r_display = document.getElementById("r_display")
+const target_table = {"temp":temperature_input,"pressure":pressure_input,"volume":volume_input,"n":n_input}
 
 const clapeyron = new Clapeyron()
 
@@ -41,10 +42,10 @@ function build_plot(){
 }
 build_plot()
 
-volume_max.addEventListener("change",()=>{volume_input.value = Math.min(volume_input.value,volume_max.value)})
-pressure_max.addEventListener("change",()=>{pressure_input.value = Math.min(pressure_input.value,pressure_max.value)})
-volume_min.addEventListener("change",()=>{volume_input.value = Math.max(volume_input.value,volume_min.value)})
-pressure_min.addEventListener("change",()=>{pressure_input.value = Math.max(pressure_input.value,pressure_min.value)})
+volume_max.addEventListener("change",()=>{volume_input.value = Math.min(volume_input.value,volume_max.value);build_plot()})
+pressure_max.addEventListener("change",()=>{pressure_input.value = Math.min(pressure_input.value,pressure_max.value);build_plot()})
+volume_min.addEventListener("change",()=>{volume_input.value = Math.max(volume_input.value,volume_min.value);build_plot()})
+pressure_min.addEventListener("change",()=>{pressure_input.value = Math.max(pressure_input.value,pressure_min.value);build_plot()})
 
 
 function updateUnity(){
@@ -65,7 +66,26 @@ function updateUnity(){
 }
 
 function updateTarget(){
-  
+   n_input.classList.remove("border-success")
+   pressure_input.classList.remove("border-success")
+   volume_input.classList.remove("border-success")
+   temperature_input.classList.remove("border-success")
+   n_input.classList.remove("text-success")
+   pressure_input.classList.remove("text-success")
+   volume_input.classList.remove("text-success")
+   temperature_input.classList.remove("text-success")
+   n_input.readOnly = false
+   pressure_input.readOnly = false
+   volume_input.readOnly = false
+   temperature_input.readOnly = false
+   target_table[calc_target.value].readOnly = true
+   target_table[calc_target.value].classList.add("border-success")
+   target_table[calc_target.value].classList.add("text-success")
+  }
+updateTarget()
+
+function updateResultPoint(){
+  changePointPos(pressure_input.value,volume_input.value,clapeyron)
 }
 
 unity.addEventListener("change",updateUnity)
@@ -74,12 +94,34 @@ calc_target.addEventListener("change",updateTarget)
 form.addEventListener("change",()=>{
   var rebuildPlot = false
 
+  /// REBUILD CHECKS
+  if(parseFloat(n_input.value)!=clapeyron.n){rebuildPlot = true}
+  clapeyron.n = parseFloat(n_input.value)
   if(parseFloat(pressure_max.value)!=data.pressure_max){rebuildPlot = true}
   if(parseFloat(volume_max.value)!=data.volume_max){rebuildPlot = true}
   if(parseFloat(pressure_min.value)!=data.pressure_min){rebuildPlot = true}
   if(parseFloat(volume_min.value)!=data.volume_min){rebuildPlot = true}
-  if(parseFloat(n_input.value)!=clapeyron.n){rebuildPlot = true}
 
+  // CALCULOS
+  switch(calc_target.value){
+    case 'temp':
+      temperature_input.value = clapeyron.getTemperature(pressure_input.value,volume_input.value).toFixed(2)
+      updateResultPoint()
+      break;
+    case 'volume':
+      volume_input.value = clapeyron.getVolume(pressure_input.value,temperature_input.value).toFixed(2)
+      updateResultPoint()
+      break;
+    case 'pressure':
+      pressure_input.value = clapeyron.getPressure(volume_input.value,temperature_input.value).toFixed(2)
+      updateResultPoint()
+      break;
+    case 'n':
+      n_input.value = clapeyron.getN(pressure_input.value,volume_input.value,temperature_input.value).toFixed(2)
+      updateResultPoint()
+      break;
+  }
+  
   if(parseFloat(volume_input.value)>parseFloat(volume_max.value) || parseFloat(pressure_input.value)>parseFloat(pressure_max.value)){
     volume_max.value = Math.max(pressure_input.value,volume_input.value)
     pressure_max.value = Math.max(pressure_input.value,volume_input.value)
@@ -88,14 +130,9 @@ form.addEventListener("change",()=>{
   
   if(parseFloat(pressure_input.value)<parseFloat(pressure_min.value) || parseFloat(volume_input.value)<parseFloat(volume_min.value)){
     pressure_min.value = Math.min(pressure_input.value,volume_input.value)
-    volume_min = Math.min(pressure_input.value,volume_input.value)
+    volume_min.value = Math.min(pressure_input.value,volume_input.value)
     rebuildPlot = true
   }
-
-  // CALCULOS
-  changePointPos(pressure_input.value,volume_input.value,clapeyron)
-
-  temperature_input.value = clapeyron.getTemperature(pressure_input.value,volume_input.value).toFixed(2)
 
   if(rebuildPlot){
     console.log("REBUILDING!")

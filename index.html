@@ -11,7 +11,7 @@
 <body>
   <main class="container mt-4">
     <!-- Gráfico -->
-    <div id="plot" style="min-height: 600px;"></div>
+    <div id="plot" style="min-height: 550px;"></div>
 
     <!-- Configurações -->
     <hr class="border border-secondary">
@@ -26,10 +26,10 @@
             Calcular:
 
             <select id="calc_target" class="form-control">
-              <option>Temperatura</option>
-              <option>Pressão</option>
-              <option>Volume</option>
-              <option>Quantidade de matéria</option>
+              <option value="temp">Temperatura</option>
+              <option value="pressure">Pressão</option>
+              <option value="volume">Volume</option>
+              <option value="n">Quantidade de matéria</option>
             </select>
           </div>
         </div>
@@ -53,9 +53,9 @@
 
         <div class="row">
           <div class="input-group flex-wrap">
-            <input class="col-md form-control" type="number" step="any" min="0" id="pressure_input" value="50">
+            <input class="col-md form-control" type="number" step="any" min="0" id="pressure_input" value="5">
             <span class="col-auto input-group-text">&times;</span>
-            <input class="col-md form-control" type="number" step="any" min="0" id="volume_input" value="50">
+            <input class="col-md form-control" type="number" step="any" min="0" id="volume_input" value="5">
             
             <span class="col-auto input-group-text">=</span>
             <input class="col-md form-control" type="number" step="any" min="0" id="temperature_input" value="304.878">
@@ -64,15 +64,10 @@
             <input class="col-md form-control text-secondary" type="number" id="R_input" readonly value="0.082">
             
             <span class="col-auto input-group-text">&times;</span>
-            <input class="col-md form-control" type="number" id="n_input" value="100">
+            <input class="col-md form-control" type="number" id="n_input" value="1">
           
           </div>
         </div>
-
-
-
-
-
       </div>
 
       <div class="row mb-2">
@@ -99,7 +94,7 @@
             <span class="input-group-text">Min:</span>
             <input type="number" step="any" class="form-control" id="volume_min" min="0" value="1">
             <span class="input-group-text">Max:</span>
-            <input type="number" step="any" class="form-control" id="volume_max" min="0" value="100">
+            <input type="number" step="any" class="form-control" id="volume_max" min="0" value="10">
           </div>
           <span>Intervalo Pressão:</span>
           <div class="input-group mb-1">
@@ -107,7 +102,7 @@
               <span class="input-group-text">Min:</span>
               <input type="number" step="any" class="form-control" id="pressure_min" min="0" value="1">
               <span class="input-group-text">Max:</span>
-              <input type="number" step="any" class="form-control" id="pressure_max" min="0" value="100">
+              <input type="number" step="any" class="form-control" id="pressure_max" min="0" value="10">
             </div>
           </div>
         </section>
@@ -117,6 +112,7 @@
     </form>
     <!-- Sobre -->
     <hr class="border border-secondary">
+    <h5>Como usar:</h5>
 
   </main>
   <script type="module" src="/src/main.js"></script>

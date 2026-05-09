@@ -6,7 +6,37 @@ class Clapeyron{
     n=100
 
     getTemperature(pressure,volume){
+        pressure = parseFloat(pressure)
+        volume = parseFloat(volume)
+        // pV=nrt
+        // T = pV/nr
         return (pressure*volume)/(this.n*this.r)
+    }
+
+    getPressure(volume,temperature){
+        temperature = parseFloat(temperature)
+        volume = parseFloat(volume)
+        // pV=nrt
+        // p = nrt/V
+        return (this.n*this.r*temperature)/volume
+    }
+
+    getVolume(pressure,temperature){
+        temperature = parseFloat(temperature)
+        pressure = parseFloat(pressure)
+        // pV=nrt
+        // v = nrt/p
+        return (this.r*this.n*temperature)/pressure
+    }
+
+    getN(pressure,volume,temperature){
+        temperature = parseFloat(temperature)
+        pressure = parseFloat(pressure)
+        volume = parseFloat(volume)
+        // pV=nrt
+        // n = pV/rt
+        this.n = (pressure*volume)/(temperature*this.r)
+        return this.n
     }
 
     setR(to){

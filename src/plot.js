@@ -30,7 +30,7 @@ function generateLayout(clapeyron,pressure_max,volume_max,pressure_min,volume_mi
                     x: 0, y: 0, z: 0
                 },
                 eye: {
-                    x: -1.1, y: -2.5, z: 2.1
+                    x: -2.5, y: -2.5, z: 1.5
                 },
                 up: {
                     x: 0, y: 0, z: 1
@@ -95,7 +95,7 @@ function createTrace2() {
             size: 12,
             line: {
                 color: 'rgb(255, 128, 128)',
-                width: 3.75
+                width: 4.75
             },
             opacity: 0.9
         },
