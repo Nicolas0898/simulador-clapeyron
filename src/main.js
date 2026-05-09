@@ -71,21 +71,18 @@ function updateUnity(){
 }
 
 function updateTarget(){
-   n_input.classList.remove("border-success")
-   pressure_input.classList.remove("border-success")
-   volume_input.classList.remove("border-success")
-   temperature_input.classList.remove("border-success")
-   n_input.classList.remove("text-success")
-   pressure_input.classList.remove("text-success")
-   volume_input.classList.remove("text-success")
-   temperature_input.classList.remove("text-success")
-   n_input.readOnly = false
-   pressure_input.readOnly = false
-   volume_input.readOnly = false
-   temperature_input.readOnly = false
+  var resetinputs = [n_input,pressure_input,volume_input,temperature_input]
+  for(let i in resetinputs){
+    resetinputs[i].classList.remove('border-success')
+    resetinputs[i].classList.remove('text-success')
+    resetinputs[i].classList.remove('bg-success-subtle')
+    resetinputs[i].readOnly = false
+  }
+
    target_table[calc_target.value].readOnly = true
    target_table[calc_target.value].classList.add("border-success")
    target_table[calc_target.value].classList.add("text-success")
+   target_table[calc_target.value].classList.add("bg-success-subtle")
   }
 updateTarget()
 
