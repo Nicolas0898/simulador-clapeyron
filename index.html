@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simulador-claypeyron</title>
+  </head>
+  <body>
+    <main class="container mt-4">
+      <!-- Gráfico -->
+      <div id="plot" style="min-height: 600px;"></div>
+      
+      <!-- Configurações -->
+      <hr class="border border-secondary">
+      <h3 class="">-------:</h3>
+      <div class="container">
+         <div class="row mb-2">
+          <!-- Valores -->
+          <section class="col-md-6">
+            <h5>Valores:</h5>
+            <span>Intervalo Volume:</span>
+            <div class="input-group">
+              <span class="input-group-text">Min:</span>
+              <input type="number" step="any" class="form-control" name="volume_min" min="0" value="1">
+              <span class="input-group-text">Max:</span>
+              <input type="number" step="any" class="form-control" name="volume_max" min="0" value="100">
+            </div>
+            <span>Intervalo Pressão:</span>
+            <div class="input-group">
+               <div class="input-group">
+              <span class="input-group-text">Min:</span>
+              <input type="number" step="any" class="form-control" name="pressure_min" min="0" value="1">
+              <span class="input-group-text">Max:</span>
+              <input type="number" step="any" class="form-control" name="pressure_min" min="0" value="100">
+            </div>
+            </div>
+
+          </section>
+          
+          <!-- Unidades -->
+          <section class="col-md-6">
+            <h5>Unidades:</h5>
+            <span>Unidade do Volume:</span>
+            <select id="volume_unity" class="form-control col-md-6">
+              <option>Litros (L)</option>
+              <option>Metros Cúbicos (m³)</option>
+            </select>
+            <span>Unidade da Pressão:</span>
+            <select id="pressure_unity" class="form-control col-md-6">
+              <option>Atmosferas (Atm)</option>
+              <option>Pascal (Pa)</option>
+            </select>
+          </section>
+        </div>
+
+        <div class="row">
+
+          <!-- Configurações do gráfico -->
+          <section class="col mb-3">
+            <h5>Gráfico:</h5>
+            Tipo:
+            
+            <select class="form-control" id="graph_type">
+              <option>3D</option>
+              <option>2D</option>
+            </select>
+          </section>
+          
+        </div>
+    </div>
+      <!-- Sobre -->
+      <hr class="border border-secondary">
+
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
