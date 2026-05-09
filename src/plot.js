@@ -1,10 +1,10 @@
 
-import { Clayperon } from './clayperon'
+import { Clapeyron } from './clapeyron'
 
 function generateLayout(){
     var layout = {
         title:{
-            text:"Formula de claypeyron",
+            text:"Formula de Clapeyron",
             font:{
             size:32
             }
@@ -56,6 +56,8 @@ function generateLayout(){
         
         },
 
+        colorway:["#ff8989","#ffd9a7"],
+
         margin: {
             l: 0,
             r: 0,
@@ -84,7 +86,7 @@ function printPlot(layout){
     }
 
 
-    var data = [{
+    var data1 = {
             x:pressao,
             y:volume,
             z:temperatura,
@@ -94,17 +96,38 @@ function printPlot(layout){
             colorscale:'Hot',
             showscale:true,
 
-            opacity:0.75,
+            opacity:0.5,
+
+            name:"Clapeyron",
+            showlegend: false
 
 
-            }];
+            };
+    
+    var data2 = {
+        x:[50],
+        y:[50],
+        z:[clayperon(50,50,100,0.082) + 0.011],
+        zorder:1,
+        type:"scatter3d",
+        mode: 'markers',
+	    marker: {
+            size: 12,
+            line: {
+            color: 'rgb(217, 217, 217)',
+            width: 0.5},
+            opacity: 1
+        },
+        name:"Resultado",
+        showlegend: false
 
+    }
 
     const config = {
         responsive:true
     }
 
-    Plotly.react('plot', data, layout,config);
+    Plotly.react('plot', [data1,data2], layout,config);
 
 }
 

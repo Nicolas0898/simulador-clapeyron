@@ -1,78 +1,122 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>simulador-claypeyron</title>
-  </head>
-  <body>
-    <main class="container mt-4">
-      <!-- Gráfico -->
-      <div id="plot" style="min-height: 600px;"></div>
-      
-      <!-- Configurações -->
-      <hr class="border border-secondary">
-      <h3 class="">-------:</h3>
-      <div class="container">
-         <div class="row mb-2">
-          <!-- Valores -->
-          <section class="col-md-6">
-            <h5>Valores:</h5>
-            <span>Intervalo Volume:</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>simulador-claypeyron</title>
+</head>
+
+<body>
+  <main class="container mt-4">
+    <!-- Gráfico -->
+    <div id="plot" style="min-height: 600px;"></div>
+
+    <!-- Configurações -->
+    <hr class="border border-secondary">
+    <!-- <h3 class="">-------:</h3> -->
+    <div class="container">
+      <!-- Valores  -->
+      <div class="row mb-2">
+        <h5>Valores:</h5>
+
+        <div class="row">
+          <div class="input-group">
+            <span class="col input-group-text">Volume <span id="volume_unity_display"
+                class="fst-italic">(L)</span></span>
+            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
+            <span class="col input-group-text">Pressão <span id="pressure_unity_display"
+                class="fst-italic">(atm)</span></span>
+            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&equals;</span>
+            <span class="col input-group-text">Temperatura <span id="temperature_unity_display"
+                class="fst-italic">(K)</span></span>
+            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
+            <span class="col input-group-text">R</span>
+            <span class="col-auto input-group-text text-opacity-100" style="color: rgb(0,0,0,0);">&times;</span>
+            <span class="col input-group-text">Quant. de matéria <span id="volume_unity_display"
+                class="fst-italic">(Mol)</span></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-group">
+            <input class="col form-control" type="number" step="any" min="0" name="volume_input">
+            <span class="col-auto input-group-text">&times;</span>
+            <input class="col form-control" type="number" step="any" min="0" name="pressure_input">
+            <span class="col-auto input-group-text">=</span>
+            <input class="col form-control" type="number" step="any" min="0" name="temperature_input">
+            <span class="col-auto input-group-text">&times;</span>
+            <input class="col form-control" type="number" name="R" readonly value="0.082">
+            <span class="col-auto input-group-text">&times;</span>
+            <input class="col form-control" type="number" name="R" value="100">
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="row mb-2">
+        <!-- Unidades -->
+        <section class="col-md-6">
+          <h5>Unidades:</h5>
+          <span>Unidade do Volume:</span>
+          <select id="volume_unity" class="form-control col-md-6">
+            <option>Litros (L)</option>
+            <option>Metros Cúbicos (m³)</option>
+          </select>
+          <span>Unidade da Pressão:</span>
+          <select id="pressure_unity" class="form-control col-md-6">
+            <option>Atmosferas (Atm)</option>
+            <option>Pascal (Pa)</option>
+          </select>
+        </section>
+
+        <!-- Intervalos -->
+        <section class="col-md-6">
+          <h5>Intervalos:</h5>
+          <span>Intervalo Volume:</span>
+          <div class="input-group">
+            <span class="input-group-text">Min:</span>
+            <input type="number" step="any" class="form-control" name="volume_min" min="0" value="1">
+            <span class="input-group-text">Max:</span>
+            <input type="number" step="any" class="form-control" name="volume_max" min="0" value="100">
+          </div>
+          <span>Intervalo Pressão:</span>
+          <div class="input-group">
             <div class="input-group">
-              <span class="input-group-text">Min:</span>
-              <input type="number" step="any" class="form-control" name="volume_min" min="0" value="1">
-              <span class="input-group-text">Max:</span>
-              <input type="number" step="any" class="form-control" name="volume_max" min="0" value="100">
-            </div>
-            <span>Intervalo Pressão:</span>
-            <div class="input-group">
-               <div class="input-group">
               <span class="input-group-text">Min:</span>
               <input type="number" step="any" class="form-control" name="pressure_min" min="0" value="1">
               <span class="input-group-text">Max:</span>
               <input type="number" step="any" class="form-control" name="pressure_min" min="0" value="100">
             </div>
-            </div>
+          </div>
 
-          </section>
-          
-          <!-- Unidades -->
-          <section class="col-md-6">
-            <h5>Unidades:</h5>
-            <span>Unidade do Volume:</span>
-            <select id="volume_unity" class="form-control col-md-6">
-              <option>Litros (L)</option>
-              <option>Metros Cúbicos (m³)</option>
-            </select>
-            <span>Unidade da Pressão:</span>
-            <select id="pressure_unity" class="form-control col-md-6">
-              <option>Atmosferas (Atm)</option>
-              <option>Pascal (Pa)</option>
-            </select>
-          </section>
-        </div>
+        </section>
 
-        <div class="row">
 
-          <!-- Configurações do gráfico -->
-          <section class="col mb-3">
-            <h5>Gráfico:</h5>
-            Tipo:
-            
-            <select class="form-control" id="graph_type">
-              <option>3D</option>
-              <option>2D</option>
-            </select>
-          </section>
-          
-        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- Configurações do gráfico -->
+        <section class="col mb-3">
+          <h5>Gráfico:</h5>
+          Tipo:
+
+          <select class="form-control" id="graph_type">
+            <option>3D</option>
+            <option>2D</option>
+          </select>
+        </section>
+
+      </div>
     </div>
-      <!-- Sobre -->
-      <hr class="border border-secondary">
+    <!-- Sobre -->
+    <hr class="border border-secondary">
 
-    </main>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
